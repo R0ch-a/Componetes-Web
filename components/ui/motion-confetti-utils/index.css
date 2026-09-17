@@ -1,0 +1,52 @@
+/*
+ * A fonte colada importa esta folha mas não a trouxe junto. O que está aqui é
+ * reconstrução a partir do que o componente exige da marcação: o `.confetti-root`
+ * precisa ser o contexto de posicionamento, porque `.confetti-burst` não traz
+ * offsets próprios e as partículas saem todas do mesmo ponto — o centro do
+ * botão. Trocar por inteiro quando o original aparecer.
+ */
+
+.confetti-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Origem do disparo: os bursts vêm antes do botão no DOM, então o botão fica
+   por cima e o confete parece sair de trás dele. */
+.confetti-root {
+  position: relative;
+  display: inline-flex;
+}
+
+.confetti-burst {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  transform-style: preserve-3d;
+}
+
+.confetti-trigger {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.4rem;
+  border: 1px solid var(--border);
+  border-radius: 9999px;
+  background-color: var(--card);
+  color: var(--card-foreground);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.2;
+  cursor: pointer;
+  box-shadow: 0 1px 2px color-mix(in oklab, var(--foreground) 8%, transparent);
+}
+
+.confetti-trigger:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+}

@@ -39,6 +39,24 @@ export const buttonsMeta: CollectionMeta = {
       credit: { label: "21st.dev" },
     },
     {
+      id: "button-03",
+      name: "Button 03 — Pixel-Broke",
+      description:
+        "Botão cujas bordas se despedaçam no hover. Cada lado tem doze faixas, e o `--index` de cada uma (0 a 4) não é tamanho: é distância de voo. Faixa com índice 0 não desenha nada — por isso são cinco quadrados por lado, não doze — e as outras trazem um quadrado de 13px que em repouso encosta na barra, fechando a silhueta, e no hover se solta e vai para fora tantos quadrados quanto o índice, deixando o vazio branco entre ele e o botão. As colunas ficam fora da barra e são mais altas que ela (doze faixas de meio quadrado, vizinhos sobrepostos pela metade), então os quadrados das pontas passam da borda de cima e de baixo — é daí que vem o degrau nos cantos quando o botão está parado, e o escalonamento quando estoura. O atraso cresce do topo até o meio e decresce até a base, então a quebra corre pela borda em vez de saltar de uma vez. O `opacity: min(1, var(--index))` apaga as faixas zeradas sem precisar de seletor. O rótulo sai em caixa alta e troca de cor no hover pelo clone de `data-text`, que entra sobreposto, sem deslocar nada. Prop: text. Atenção: a fonte colada trouxe só o JSX, e o CSS aqui é reconstrução; a classe `w-inline-block` é do Webflow e não faz nada neste projeto; e o elemento é um `<a href=\"#\">`, então o clique pula para o topo da página.",
+      tags: ["css", "pixel", "hover", "stagger"],
+      source: "components/ui/pixel-broke-button.tsx",
+      stageClassName: "min-h-[220px]",
+    },
+    {
+      id: "confetti",
+      name: "Confetti",
+      description:
+        "Botão que solta confete a cada clique. A física não roda quadro a quadro: no momento do disparo o componente simula os 150 ticks inteiros — velocidade com decaimento de 0.91, gravidade somada ao y, gingado por cosseno — e destila tudo em 41 keyframes de `transform` por partícula, que o Motion depois interpola em linear. Por isso 60 partículas custam 60 animações do WAAPI e nenhum rAF. Cada peça sorteia forma (círculo, retângulo ou fita — a fita é alta e estreita, e o `rotateY` contínuo faz ela piscar de perfil como papel girando), cor entre sete, tamanho e rotação. Os primeiros 8% do tempo são um estalo de escala até 1.15 e volta; a opacidade só começa a cair na metade. Cada rajada é um nó próprio que se remove sozinho meio segundo depois de acabar, então cliques seguidos se acumulam em vez de cortar o anterior. Props: particleCount, startVelocity, spread, decay, gravity, drift, duration, size e buttonSpring. Atenção: o paste importa `./motion-confetti-utils/index.css` mas não trouxe a folha — a que está no repositório é reconstrução.",
+      tags: ["motion", "waapi", "particles", "click"],
+      source: "components/ui/confetti.tsx",
+      stageClassName: "min-h-[560px]",
+    },
+    {
       id: "animated-tabs",
       name: "Animated Tabs",
       description:

@@ -165,6 +165,15 @@ export const backgroundsMeta: CollectionMeta = {
       credit: { label: "Magic UI", href: "https://magicui.design/docs/components/particles" },
     },
     {
+      id: "starfield",
+      name: "Starfield",
+      description:
+        "Um disco de 25 mil estrelas girando em torno do centro, desenhado pixel a pixel: em vez de traçar formas, o componente escreve direto num Uint32Array sobre o ImageData — cada estrela é um pixel só, e é por isso que 25 mil cabem no mesmo quadro sem derrubar a taxa. O raio de cada uma sai da média de dois sorteios de faixas diferentes, o que adensa o anel em vez de espalhar por igual; a opacidade cai com o raio e a velocidade angular sobe com ela, então as de dentro giram mais rápido e o disco se enrola sozinho. Duas senoides de fase independente somam um tremor em x e y, tirando a órbita do círculo perfeito. Cada quadro apaga só o pixel anterior de cada estrela antes de escrever o novo — a tela nunca é limpa inteira. O fundo fica transparente, porque o putImageData substitui os pixels inclusive no alfa, então a cor vem do container. Mede o container (não a janela) e ignora o devicePixelRatio. Props: starCount, waveFrequency, starEscapeWidth, starColor, maxOpacity, rotationSpeed e waveSpeed — voidWidth está na assinatura mas não é usado. starColor entra no array de dependências do efeito: passe um objeto estável, senão o campo reinicia a cada render do pai.",
+      tags: ["canvas", "imagedata", "orbit", "pixels"],
+      source: "components/ui/starfield.tsx",
+      stageClassName: "min-h-0 p-4",
+    },
+    {
       id: "supply-chain-globe",
       name: "Supply Chain Globe",
       description:

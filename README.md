@@ -185,6 +185,7 @@ O CLI grava em `components/`; movi o arquivo para `components/ui/` para seguir a
 | Video Text | `components/ui/video-text.tsx` |
 | Dot Pattern | `components/ui/dot-pattern.tsx` |
 | Particles | `components/ui/particles.tsx` |
+| Starfield | `components/ui/starfield.tsx` |
 | Supply Chain Globe | `components/ui/supply-chain-globe.tsx` |
 
 ### Buttons — `/buttons`
@@ -192,6 +193,8 @@ O CLI grava em `components/`; movi o arquivo para `components/ui/` para seguir a
 | Componente | Arquivo |
 | --- | --- |
 | Shiny Button | `components/ui/shiny-button.tsx` |
+| Button 03 — Pixel-Broke | `components/ui/pixel-broke-button.tsx` |
+| Confetti | `components/ui/confetti.tsx` |
 | Dropdown Menu | `components/ui/dropdown-menu.tsx` |
 | Floating Action Menu | `components/ui/floating-action-menu.tsx` |
 | Animated Tabs | `components/ui/animated-tabs.tsx` |
