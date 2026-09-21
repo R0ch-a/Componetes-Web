@@ -1,155 +1,135 @@
 import React from 'react';
 
 /**
- * A fonte colada trouxe só o JSX — as classes `button03*` vêm de uma folha de
- * estilo que não veio junto, e o CSS abaixo é reconstrução a partir das
- * capturas de referência. Dois pontos que só as imagens revelam: os blocos
- * NÃO se movem (ficam parados numa grade e só trocam de cor, aos pares, dos
- * dois lados) e `data-text` alimenta um typewriter — no hover a palavra some
- * inteira e é reescrita letra a letra. `--index` (0 a 4) é o passo do
- * escalonamento, não distância. Trocar por inteiro quando a fonte aparecer.
+ * O registry do 21st.dev publica este componente sem CSS — `registryDependencies`
+ * volta vazio, e o `Component.tsx` destrancado é só o markup exportado do
+ * Webflow. A folha abaixo é a do bundle público da demo
+ * (cdn.21st.dev/nextjsshop/pixel-broke-button/default/bundle.*.html), transcrita
+ * sem alteração de semântica: só desminificada e comentada.
+ *
+ * O mecanismo é o inverso do que o nome sugere: a barra é um bloco preto cheio
+ * com uma grade 3x4 de quadrados pretos em cada ponta, e o hover APAGA cinco
+ * deles por lado. Os buracos é que desenham a quebra. `--index` não posiciona
+ * nada — é só o multiplicador do atraso (40ms por passo); quais células apagam
+ * está fixo no seletor, e as posições batem uma a uma com os índices não-zero
+ * dos vetores do JSX (esquerda 3,4,5,8,12 / direita 1,5,8,9,10).
  */
 const css = `
   .button03 {
-    --button03-pixel: 11px;
-    --button03-fill: var(--primary);
-    --button03-void: var(--background);
-    --button03-ink: var(--primary-foreground);
-    --button03-step: 70ms;
-
-    position: relative;
-    display: inline-block;
-    max-width: 100%;
-    padding: 19px 2.2rem;
-    color: var(--button03-ink);
-    font-size: 0.875rem;
-    font-weight: 500;
-    line-height: 14px;
-    letter-spacing: 0.08em;
+    color: #f9f4eb;
+    letter-spacing: -.02em;
     text-transform: uppercase;
+    -webkit-user-select: none;
+    user-select: none;
+    font-size: .875rem;
+    line-height: 1em;
     text-decoration: none;
+    display: grid;
   }
 
+  /* Fundo e rótulo ocupam a mesma célula: um por cima do outro, sem position. */
   .button03_bg {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-  }
-
-  .button03_bg-mid {
-    position: absolute;
-    inset: 0;
-    background-color: var(--button03-fill);
-  }
-
-  /* Grade de 2 colunas por 6 linhas de cada lado: os doze vãos entram aos
-     pares, as duas células do par fora da barra — a de dentro encostada nela,
-     a de fora um quadrado adiante. A grade é mais alta que a barra, então a
-     quebra passa da borda de cima e de baixo. */
-  .button03_bg-left,
-  .button03_bg-right {
-    position: absolute;
-    top: 50%;
-    width: calc(var(--button03-pixel) * 2);
-    height: calc(var(--button03-pixel) * 6);
-    display: flex;
-    flex-wrap: wrap;
-    transform: translateY(-50%);
+    grid-area: 1/1;
+    grid-template-columns: auto 1fr auto;
+    display: grid;
   }
 
   .button03_bg-left {
-    right: 100%;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    display: grid;
+  }
+
+  /* aspect-ratio 1 é o que torna a célula quadrada e, por tabela, dá a largura
+     das pontas: a altura da barra dividida por quatro linhas. */
+  .button03_bg-pixel {
+    aspect-ratio: 1;
+    background-color: #000;
+    width: 100%;
+    height: 100%;
+  }
+
+  .button03_bg-mid {
+    background-color: #000;
   }
 
   .button03_bg-right {
-    left: 100%;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    display: grid;
   }
 
-  /* Nada se move: só a cor muda, escalonada pelo próprio índice. Os vãos de
-     índice 0 nunca acendem — daí serem cinco por lado, não doze. */
-  .button03_bg-pixel {
-    width: var(--button03-pixel);
-    height: var(--button03-pixel);
-    background-color: transparent;
-    transition: background-color 120ms steps(1);
-    transition-delay: calc(var(--index) * var(--button03-step));
-  }
-
-  /* Repouso: acende a célula colada na barra. A grade da esquerda é espelhada,
-     então o par de dentro é o par nas duas, mas com paridade invertida. */
-  .button03_bg-left .button03_bg-pixel:nth-child(even),
-  .button03_bg-right .button03_bg-pixel:nth-child(odd) {
-    background-color: color-mix(
-      in srgb,
-      var(--button03-fill) calc(min(1, var(--index)) * 100%),
-      transparent
-    );
-  }
-
-  /* Hover: a de dentro apaga e a de fora acende. O quadrado parece ter pulado
-     para fora, mas nenhum pixel saiu do lugar — é troca de cor. */
-  .button03:hover .button03_bg-left .button03_bg-pixel:nth-child(even),
-  .button03:hover .button03_bg-right .button03_bg-pixel:nth-child(odd),
-  .button03:focus-visible .button03_bg-left .button03_bg-pixel:nth-child(even),
-  .button03:focus-visible .button03_bg-right .button03_bg-pixel:nth-child(odd) {
-    background-color: transparent;
-  }
-
-  .button03:hover .button03_bg-left .button03_bg-pixel:nth-child(odd),
-  .button03:hover .button03_bg-right .button03_bg-pixel:nth-child(even),
-  .button03:focus-visible .button03_bg-left .button03_bg-pixel:nth-child(odd),
-  .button03:focus-visible .button03_bg-right .button03_bg-pixel:nth-child(even) {
-    background-color: color-mix(
-      in srgb,
-      var(--button03-fill) calc(min(1, var(--index)) * 100%),
-      transparent
-    );
-  }
-
-  /* Typewriter: o texto real só reserva a largura, o clone de data-text é o
-     que aparece. No hover a largura vai a zero e volta em passos. */
   .button03_inner {
-    position: relative;
-    display: block;
+    grid-area: 1/1;
+    padding: .875rem 3rem;
+    display: grid;
   }
 
   .button03_text {
-    visibility: hidden;
+    grid-area: 1/1;
   }
 
-  .button03_inner::after {
+  .button03 {
+    --characters: 11;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* transition sem duração = duração zero: o quadrado não desvanece, pisca
+     para fora. O escalonamento inteiro mora no delay. */
+  .button03_bg-pixel {
+    transition: opacity;
+    transition-delay: calc(var(--index)*40ms);
+  }
+
+  /* As duas células apagadas em repouso — o degrau no canto superior esquerdo
+     e no inferior direito. */
+  .button03_bg-left .button03_bg-pixel:first-child,
+  .button03_bg-right .button03_bg-pixel:nth-child(12) {
+    opacity: 0;
+  }
+
+  .button03_inner:after {
     content: attr(data-text);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    overflow: hidden;
+    pointer-events: none;
     white-space: nowrap;
+    opacity: 0;
+    grid-area: 1/1;
+    width: 0;
+    margin: 0 auto;
+    transition: width;
+    overflow: clip;
   }
 
-  .button03:hover .button03_inner::after,
-  .button03:focus-visible .button03_inner::after {
-    animation: button03-type 760ms steps(11) forwards;
-  }
-
-  @keyframes button03-type {
-    from { width: 0; }
-    to { width: 100%; }
-  }
-
-  .button03:focus-visible {
-    outline: 2px solid var(--ring);
-    outline-offset: 6px;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .button03_bg-pixel {
-      transition-duration: 1ms;
-      transition-delay: 0ms;
+  @media (hover:hover) and (pointer:fine) {
+    .button03:is(:hover,:focus-visible) .button03_bg-left .button03_bg-pixel:is(:nth-child(3),:nth-child(4),:nth-child(5),:nth-child(8),:nth-child(12)),
+    .button03:is(:hover,:focus-visible) .button03_bg-right .button03_bg-pixel:is(:first-child,:nth-child(5),:nth-child(8),:nth-child(9),:nth-child(10)) {
+      opacity: 0;
     }
-    .button03:hover .button03_inner::after,
-    .button03:focus-visible .button03_inner::after {
-      animation-duration: 1ms;
+
+    /* O typewriter: o clone de data-text abre de 0 a 100% de largura em onze
+       passos, com overflow clip. O texto real apaga por baixo. */
+    .button03:is(:hover,:focus-visible) .button03_inner:after {
+      opacity: 1;
+      width: 100%;
+      transition: width .5s steps(var(--characters));
+    }
+
+    .button03:is(:hover,:focus-visible) .button03_text {
+      opacity: 0;
+    }
+  }
+
+  /* No toque não há hover: o mesmo recorte sai no :active. Aqui o atalho
+     transition zera o delay de propósito — resposta imediata ao dedo. */
+  @media (hover:none) or (pointer:coarse) {
+    .button03_bg-pixel {
+      transition: opacity .2s;
+    }
+
+    .button03:active .button03_bg-left .button03_bg-pixel:is(:nth-child(3),:nth-child(4),:nth-child(5),:nth-child(8),:nth-child(12)),
+    .button03:active .button03_bg-right .button03_bg-pixel:is(:first-child,:nth-child(5),:nth-child(8),:nth-child(9),:nth-child(10)) {
+      opacity: 0;
+      transition: opacity;
     }
   }
 `;

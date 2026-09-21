@@ -26,7 +26,7 @@ export const buttonsMeta: CollectionMeta = {
       tags: ["framer-motion", "dropdown", "blur", "stagger"],
       source: "components/ui/dropdown-menu.tsx",
       stageClassName: "min-h-[340px] items-start",
-      credit: { label: "21st.dev" },
+      credit: { label: "21st.dev — chetanverma16", href: "https://21st.dev/@chetanverma16/components/dropdown-menu" },
     },
     {
       id: "floating-action-menu",
@@ -36,25 +36,37 @@ export const buttonsMeta: CollectionMeta = {
       tags: ["framer-motion", "fab", "menu", "stagger"],
       source: "components/ui/floating-action-menu.tsx",
       stageClassName: "min-h-[340px] items-end",
-      credit: { label: "21st.dev" },
+      credit: { label: "21st.dev — chetanverma16", href: "https://21st.dev/@chetanverma16/components/floating-action-menu" },
     },
     {
       id: "button-03",
       name: "Button 03 — Pixel-Broke",
       description:
-        "Botão cujas bordas se despedaçam no hover. Cada lado tem doze faixas, e o `--index` de cada uma (0 a 4) não é tamanho: é distância de voo. Faixa com índice 0 não desenha nada — por isso são cinco quadrados por lado, não doze — e as outras trazem um quadrado de 13px que em repouso encosta na barra, fechando a silhueta, e no hover se solta e vai para fora tantos quadrados quanto o índice, deixando o vazio branco entre ele e o botão. As colunas ficam fora da barra e são mais altas que ela (doze faixas de meio quadrado, vizinhos sobrepostos pela metade), então os quadrados das pontas passam da borda de cima e de baixo — é daí que vem o degrau nos cantos quando o botão está parado, e o escalonamento quando estoura. O atraso cresce do topo até o meio e decresce até a base, então a quebra corre pela borda em vez de saltar de uma vez. O `opacity: min(1, var(--index))` apaga as faixas zeradas sem precisar de seletor. O rótulo sai em caixa alta e troca de cor no hover pelo clone de `data-text`, que entra sobreposto, sem deslocar nada. Prop: text. Atenção: a fonte colada trouxe só o JSX, e o CSS aqui é reconstrução; a classe `w-inline-block` é do Webflow e não faz nada neste projeto; e o elemento é um `<a href=\"#\">`, então o clique pula para o topo da página.",
-      tags: ["css", "pixel", "hover", "stagger"],
+        "O nome engana: no hover os pixels não aparecem, eles somem. A barra é um bloco preto cheio com uma grade de 3 colunas por 4 linhas de quadrados pretos em cada ponta (o `aspect-ratio: 1` deixa a célula quadrada e, por tabela, dá a largura das pontas: a altura da barra dividida por quatro). Em repouso duas células já estão em `opacity: 0` — a primeira da esquerda e a décima segunda da direita — e são elas o degrau no canto superior esquerdo e no inferior direito. No hover mais cinco por lado apagam, e são os buracos que desenham a quebra. `--index` não posiciona nada: alimenta só o `transition-delay` (40ms por passo), e como o `transition` vem sem duração o quadrado não desvanece — pisca para fora. Quais células apagam está fixo no seletor, e as posições batem uma a uma com os índices não-zero dos vetores do JSX (esquerda 3,4,5,8,12 / direita 1,5,8,9,10). O rótulo é um typewriter: o clone de `data-text` abre de 0 a 100% de largura em `steps(var(--characters))` com `overflow: clip`, enquanto o texto real vai a `opacity: 0`. Fundo e rótulo se empilham em `grid-area: 1/1`, sem `position`. No toque não há hover: uma media query `(hover:none) or (pointer:coarse)` repete o recorte no `:active`. Atenção: `--characters` está cravado em 11, o tamanho de \"Pixel-Broke\", então outro `text` dessincroniza os passos da digitação; as cores são literais (#000 e #f9f4eb) e não acompanham o tema; a classe `w-inline-block` é do Webflow e não tem regra nenhuma; e o elemento é um `<a href=\"#\">`, então o clique pula para o topo. O registry do 21st.dev publica este componente sem CSS (`registryDependencies` vazio) — a folha veio do bundle público da demo.",
+      tags: ["css", "grid", "pixel", "typewriter"],
       source: "components/ui/pixel-broke-button.tsx",
       stageClassName: "min-h-[220px]",
+      credit: { label: "21st.dev — nextjsshop", href: "https://21st.dev/@nextjsshop/components/pixel-broke-button" },
     },
     {
       id: "confetti",
       name: "Confetti",
       description:
-        "Botão que solta confete a cada clique. A física não roda quadro a quadro: no momento do disparo o componente simula os 150 ticks inteiros — velocidade com decaimento de 0.91, gravidade somada ao y, gingado por cosseno — e destila tudo em 41 keyframes de `transform` por partícula, que o Motion depois interpola em linear. Por isso 60 partículas custam 60 animações do WAAPI e nenhum rAF. Cada peça sorteia forma (círculo, retângulo ou fita — a fita é alta e estreita, e o `rotateY` contínuo faz ela piscar de perfil como papel girando), cor entre sete, tamanho e rotação. Os primeiros 8% do tempo são um estalo de escala até 1.15 e volta; a opacidade só começa a cair na metade. Cada rajada é um nó próprio que se remove sozinho meio segundo depois de acabar, então cliques seguidos se acumulam em vez de cortar o anterior. Props: particleCount, startVelocity, spread, decay, gravity, drift, duration, size e buttonSpring. Atenção: o paste importa `./motion-confetti-utils/index.css` mas não trouxe a folha — a que está no repositório é reconstrução.",
+        "Botão que solta confete a cada clique. A física não roda quadro a quadro: no momento do disparo o componente simula os 150 ticks inteiros — velocidade com decaimento de 0.91, gravidade somada ao y, gingado por cosseno — e destila tudo em 41 keyframes de `transform` por partícula, que o Motion depois interpola em linear. Por isso 60 partículas custam 60 animações do WAAPI e nenhum rAF. Cada peça sorteia forma (círculo, retângulo ou fita — a fita é alta e estreita, e o `rotateY` contínuo faz ela piscar de perfil como papel girando), cor entre sete, tamanho e rotação. Os primeiros 8% do tempo são um estalo de escala até 1.15 e volta; a opacidade só começa a cair na metade. Cada rajada é um nó próprio que se remove sozinho meio segundo depois de acabar, então cliques seguidos se acumulam em vez de cortar o anterior. O palco é parte do componente: `.confetti-stage` é uma caixa fixa de 420x300 com `overflow: hidden`, e o confete é recortado por ela de propósito; o burst fica em `z-index: 10000` contra o `z-index: 1` do botão, então passa por cima dele. Props: particleCount, startVelocity, spread, decay, gravity, drift, duration, size e buttonSpring. Atenção: o registry do 21st.dev publica o componente sem a folha que ele importa — a que está no repositório veio do bundle público da demo, e traz paleta própria escura escopada no palco.",
       tags: ["motion", "waapi", "particles", "click"],
       source: "components/ui/confetti.tsx",
-      stageClassName: "min-h-[560px]",
+      stageClassName: "min-h-[380px]",
+      credit: { label: "21st.dev — motiondotdev", href: "https://21st.dev/@motiondotdev/components/motion-confetti" },
+    },
+    {
+      id: "animated-theme-toggle",
+      name: "Animated Theme Toggle",
+      description:
+        "Botão de tema com sol e lua desenhados em SVG, pensado para o ícone se transformar de um no outro: as variants do Framer Motion levam a escala do sol de 1 a 0 e a da lua de 0 a 1 em 0,7s, e um `useTransform` amarra o `pathLength` à escala na faixa de 0,6 a 1, de modo que o traço fosse sendo desenhado no fim da ampliação. O sol são dez paths (o disco e os oito raios), a lua é um só. Duas ressalvas grandes. A primeira: **no estado em que a fonte foi publicada o botão não anima** — cada path recebe `style={{ scale: <motion value> }}`, e um motion value em `style` tem precedência sobre a escala que as variants animam; como nada nunca chama `.set()` nesses valores (o argumento de `useMotionValue` só vale na montagem), sol e lua ficam congelados no estado inicial e o clique não muda pixel nenhum. Medido: antes e depois do clique, a lua segue em `matrix(0,0,0,0,0,0)` e o sol em `none`. A segunda: mesmo funcionando, ele não troca o tema da página — o `useState` é local e o componente não fala com o next-themes; é só o ícone. Prop: className. O arquivo também não traz `\"use client\"` apesar de usar `useState`, então a fronteira de cliente vai na demo.",
+      tags: ["framer-motion", "svg", "icon", "toggle"],
+      source: "components/ui/animated-theme-toggle.tsx",
+      stageClassName: "min-h-[220px]",
+      credit: { label: "21st.dev" },
     },
     {
       id: "animated-tabs",
@@ -64,7 +76,7 @@ export const buttonsMeta: CollectionMeta = {
       tags: ["framer-motion", "layout", "tabs", "blend"],
       source: "components/ui/animated-tabs.tsx",
       stageClassName: "min-h-[220px]",
-      credit: { label: "21st.dev" },
+      credit: { label: "21st.dev — builduilabs", href: "https://21st.dev/@builduilabs/components/animated-tabs" },
     },
   ],
 };

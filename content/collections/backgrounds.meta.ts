@@ -168,10 +168,23 @@ export const backgroundsMeta: CollectionMeta = {
       id: "starfield",
       name: "Starfield",
       description:
-        "Um disco de 25 mil estrelas girando em torno do centro, desenhado pixel a pixel: em vez de traçar formas, o componente escreve direto num Uint32Array sobre o ImageData — cada estrela é um pixel só, e é por isso que 25 mil cabem no mesmo quadro sem derrubar a taxa. O raio de cada uma sai da média de dois sorteios de faixas diferentes, o que adensa o anel em vez de espalhar por igual; a opacidade cai com o raio e a velocidade angular sobe com ela, então as de dentro giram mais rápido e o disco se enrola sozinho. Duas senoides de fase independente somam um tremor em x e y, tirando a órbita do círculo perfeito. Cada quadro apaga só o pixel anterior de cada estrela antes de escrever o novo — a tela nunca é limpa inteira. O fundo fica transparente, porque o putImageData substitui os pixels inclusive no alfa, então a cor vem do container. Mede o container (não a janela) e ignora o devicePixelRatio. Props: starCount, waveFrequency, starEscapeWidth, starColor, maxOpacity, rotationSpeed e waveSpeed — voidWidth está na assinatura mas não é usado. starColor entra no array de dependências do efeito: passe um objeto estável, senão o campo reinicia a cada render do pai.",
+        "Um disco de estrelas girando em torno do centro, desenhado pixel a pixel: em vez de traçar formas, o componente escreve direto num Uint32Array sobre o ImageData — cada estrela é um pixel só, e é por isso que dez mil cabem no mesmo quadro sem derrubar a taxa. O raio de cada uma sai da média de dois sorteios de faixas diferentes, o que adensa o anel em vez de espalhar por igual; a opacidade cai com o raio e a velocidade angular sobe com ela, então as de dentro giram mais rápido e o disco se enrola sozinho. Duas senoides de fase independente somam um tremor em x e y, tirando a órbita do círculo perfeito. Cada quadro apaga só o pixel anterior de cada estrela antes de escrever o novo — a tela nunca é limpa inteira, e como as estrelas apagam o pixel umas das outras o campo fica bem mais esparso que a contagem sugere (medido: cerca de cem a quinhentos pixels acesos por quadro, o mesmo da demo publicada). O fundo fica transparente, porque o putImageData substitui os pixels inclusive no alfa, então a cor vem do container. Mede o container (não a janela) e ignora o devicePixelRatio. Props: starCount, waveFrequency, starEscapeWidth, starColor, maxOpacity, rotationSpeed e waveSpeed — voidWidth está na assinatura mas não é usado. starColor entra no array de dependências do efeito, então um literal inline reinicia o campo a cada render do pai; a demo publicada passa inline mesmo assim. Roda em rota isolada porque a demo original ocupa a viewport inteira.",
       tags: ["canvas", "imagedata", "orbit", "pixels"],
       source: "components/ui/starfield.tsx",
+      preview: { route: "/preview/starfield" },
       stageClassName: "min-h-0 p-4",
+      credit: { label: "21st.dev — designali-in", href: "https://21st.dev/@designali-in/components/starfield" },
+    },
+    {
+      id: "hyperdrive-hero",
+      name: "Hyperdrive Hero",
+      description:
+        "Hero de viagem em dobra: 800 estrelas correndo em direção ao observador, em canvas 2D. A profundidade é feita à mão — cada estrela guarda x, y e z, e a projeção divide x e y por z, então quanto mais perto, mais rápido ela se abre para fora da tela. O rastro não é borrão nem histórico: cada estrela guarda o z do quadro anterior (`pz`) e o desenho é uma linha entre a projeção velha e a nova, com espessura e opacidade crescendo conforme se aproxima. A tela nunca é limpa — cada quadro pinta um preto a 20% por cima, e o que ficou desbota sozinho, que é o que dá a cauda. Ao cruzar z = 1 a estrela renasce lá no fundo com posição nova. O ponteiro controla a velocidade pela distância horizontal até o centro: `2 + (1 - dist/maxDist) * 20`, ou seja 22 no meio da tela e 2 nas bordas. Por cima vem a hero em si, com selo, título em degradê, parágrafo e botão entrando em cascata pelo Framer Motion (0,2s de atraso entre eles), e um gradiente preto no topo e no rodapé que afunda as estrelas no fundo. Sem props: textos e contagem de estrelas estão no arquivo. Roda em rota isolada porque é `h-screen` e mede `window.innerWidth/innerHeight` para dimensionar o canvas, além de escutar `resize` e `mousemove` no `window`. A fonte veio em JS puro; o arquivo traz só as anotações de tipo que o `strict` exige, sem mudança de lógica. Tem um `cn()` declarado e nunca usado, como no original.",
+      tags: ["canvas", "starfield", "3d", "framer-motion"],
+      source: "components/ui/hyperdrive-hero.tsx",
+      preview: { route: "/preview/hyperdrive-hero" },
+      stageClassName: "min-h-0 p-4",
+      credit: { label: "21st.dev — dhileepkumargm", href: "https://21st.dev/@dhileepkumargm/components/hyperdrive-hero" },
     },
     {
       id: "supply-chain-globe",

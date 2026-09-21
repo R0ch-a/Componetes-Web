@@ -125,6 +125,7 @@ A rota `/<slug>`, o link no header e o card no hub aparecem sozinhos.
 | Diagonal Carousel | `components/ui/diagonal-carousel.tsx` |
 | Animated List | `components/ui/animated-list.tsx` |
 | Tilted Carousel | `components/ui/tilted-carousel.tsx` |
+| Vertical Image Stack | `components/ui/vertical-image-stack.tsx` |
 
 ### Teclados — `/teclados`
 
@@ -186,6 +187,7 @@ O CLI grava em `components/`; movi o arquivo para `components/ui/` para seguir a
 | Dot Pattern | `components/ui/dot-pattern.tsx` |
 | Particles | `components/ui/particles.tsx` |
 | Starfield | `components/ui/starfield.tsx` |
+| Hyperdrive Hero | `components/ui/hyperdrive-hero.tsx` |
 | Supply Chain Globe | `components/ui/supply-chain-globe.tsx` |
 
 ### Buttons — `/buttons`
@@ -198,6 +200,7 @@ O CLI grava em `components/`; movi o arquivo para `components/ui/` para seguir a
 | Dropdown Menu | `components/ui/dropdown-menu.tsx` |
 | Floating Action Menu | `components/ui/floating-action-menu.tsx` |
 | Animated Tabs | `components/ui/animated-tabs.tsx` |
+| Animated Theme Toggle | `components/ui/animated-theme-toggle.tsx` |
 
 ### Cursor — `/cursor`
 

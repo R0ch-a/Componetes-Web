@@ -11,11 +11,11 @@ import { TooltipCardDemo } from "@/components/showcase/demos/tooltip-card-demo";
 import { AsciiObjectDemo } from "@/components/showcase/demos/ascii-object-demo";
 import { VideoTextDemo } from "@/components/showcase/demos/video-text-demo";
 import { ParticlesDemo } from "@/components/showcase/demos/particles-demo";
-import { StarfieldDemo } from "@/components/showcase/demos/starfield-demo";
 import { MeteorsDemo } from "@/components/showcase/demos/meteors-demo";
 import { ShinyButtonDemo } from "@/components/showcase/demos/shiny-button-demo";
 import { Button03Demo } from "@/components/showcase/demos/button-03-demo";
 import { ConfettiDemo } from "@/components/showcase/demos/confetti-demo";
+import { AnimatedThemeToggleDemo } from "@/components/showcase/demos/animated-theme-toggle-demo";
 import { DropdownMenuDemo } from "@/components/showcase/demos/dropdown-menu-demo";
 import { FloatingActionMenuDemo } from "@/components/showcase/demos/floating-action-menu-demo";
 import { AnimatedTabsDemo } from "@/components/showcase/demos/animated-tabs-demo";
@@ -62,10 +62,10 @@ export const demos: Record<string, ComponentType> = {
   "video-text": VideoTextDemo,
   "dot-pattern": DotPatternDemo,
   "particles": ParticlesDemo,
-  "starfield": StarfieldDemo,
   "shiny-button": ShinyButtonDemo,
   "button-03": Button03Demo,
   "confetti": ConfettiDemo,
+  "animated-theme-toggle": AnimatedThemeToggleDemo,
   "dropdown-menu": DropdownMenuDemo,
   "floating-action-menu": FloatingActionMenuDemo,
   "animated-tabs": AnimatedTabsDemo,

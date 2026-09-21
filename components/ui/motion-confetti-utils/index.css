@@ -1,52 +1,67 @@
 /*
- * A fonte colada importa esta folha mas não a trouxe junto. O que está aqui é
- * reconstrução a partir do que o componente exige da marcação: o `.confetti-root`
- * precisa ser o contexto de posicionamento, porque `.confetti-burst` não traz
- * offsets próprios e as partículas saem todas do mesmo ponto — o centro do
- * botão. Trocar por inteiro quando o original aparecer.
+ * O registry do 21st.dev publica este componente sem esta folha — o import
+ * `./motion-confetti-utils/index.css` aponta para um arquivo que não vem junto.
+ * O que está aqui é o CSS do bundle público da demo
+ * (cdn.21st.dev/larsen66/motion-confetti/default/bundle.*.html), desminificado,
+ * sem alteração de semântica.
+ *
+ * As três variáveis vêm da paleta própria do componente (`:root, .motion-example`
+ * no bundle) e ficam escopadas no palco de propósito: o projeto já define
+ * `--border` com outro valor, e herdar o do tema mudaria a borda do botão.
  */
 
 .confetti-stage {
+  --white: #fff;
+  --layer: #13181a;
+  --border: #1e2427;
+
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  width: 420px;
+  max-width: 100%;
+  height: 300px;
+  overflow: hidden;
+  position: relative;
 }
 
-/* Origem do disparo: os bursts vêm antes do botão no DOM, então o botão fica
-   por cima e o confete parece sair de trás dele. */
 .confetti-root {
   position: relative;
-  display: inline-flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+/* z-index 10000 contra o z-index 1 do botão: o confete passa por cima dele. */
 .confetti-burst {
   position: absolute;
-  left: 50%;
   top: 50%;
-  width: 0;
-  height: 0;
+  left: 50%;
   pointer-events: none;
-  transform-style: preserve-3d;
+  z-index: 10000;
 }
 
 .confetti-trigger {
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.7rem 1.4rem;
+  gap: 8px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: inherit;
+  color: var(--white);
+  background: var(--layer);
   border: 1px solid var(--border);
-  border-radius: 9999px;
-  background-color: var(--card);
-  color: var(--card-foreground);
-  font-size: 0.9375rem;
-  font-weight: 600;
-  line-height: 1.2;
+  border-radius: 10px;
   cursor: pointer;
-  box-shadow: 0 1px 2px color-mix(in oklab, var(--foreground) 8%, transparent);
+  z-index: 1;
+  user-select: none;
+  -webkit-user-select: none;
+  will-change: transform;
+  transition: background-color .15s;
 }
 
-.confetti-trigger:focus-visible {
-  outline: 2px solid var(--ring);
-  outline-offset: 3px;
+.confetti-trigger:hover {
+  background-color: #ffffff14;
 }

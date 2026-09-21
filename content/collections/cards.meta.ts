@@ -181,5 +181,16 @@ export const cardsMeta: CollectionMeta = {
       stageClassName: "min-h-0 p-4",
       credit: { label: "Portado de ux_ui_design/tiltedcarousel" },
     },
+    {
+      id: "vertical-image-stack",
+      name: "Vertical Image Stack",
+      description:
+        "Uma pilha vertical de cinco cards que gira como roda: o da vez fica de frente, os dois vizinhos de cada lado recuam em escada (160 e 280px, escala 0,82 e 0,7, opacidade 0,6 e 0,3) e inclinam em X para longe do centro, e o resto some. A distância de cada card ao atual é calculada com volta (`diff` corrigido por metade do total), então o último e o primeiro são vizinhos e a roda não tem fim. Tudo é uma mola do Framer Motion (rigidez 300, amortecimento 30) animando y, escala, opacidade e rotateX sob `perspective: 1200px`. Três entradas: arrastar o card da frente na vertical (limiar de 50px, só ele é arrastável), a roda do mouse (delta acima de 30) e os pontos à direita; as duas primeiras passam por um cooldown de 400ms, para uma rolagem de trackpad não atravessar a pilha inteira. Contador em `tabular-nums` à esquerda. Roda em rota isolada: é `h-screen` e escuta `wheel` no `window`, então solto na vitrine sequestraria a rolagem da página. Atenção: a sombra do card usa `hsl(var(--foreground) / 0.15)`, escrito para os tokens HSL do shadcn antigo — com os tokens `oklch` deste projeto a declaração é inválida e o card sai sem sombra nenhuma. As imagens são fixas no arquivo e vêm do CDN do 21st pelo `next/image`.",
+      tags: ["framer-motion", "stack", "3d", "wheel"],
+      source: "components/ui/vertical-image-stack.tsx",
+      preview: { route: "/preview/vertical-image-stack" },
+      stageClassName: "min-h-0 p-4",
+      credit: { label: "21st.dev — jatin-yadav05", href: "https://21st.dev/@jatin-yadav05/components/vertical-image-stack" },
+    },
   ],
 };
