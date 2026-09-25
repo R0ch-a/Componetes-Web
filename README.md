@@ -188,6 +188,7 @@ O CLI grava em `components/`; movi o arquivo para `components/ui/` para seguir a
 | Particles | `components/ui/particles.tsx` |
 | Starfield | `components/ui/starfield.tsx` |
 | Hyperdrive Hero | `components/ui/hyperdrive-hero.tsx` |
+| Rain | `components/ui/rain.tsx` |
 | Supply Chain Globe | `components/ui/supply-chain-globe.tsx` |
 
 ### Buttons — `/buttons`
@@ -201,6 +202,10 @@ O CLI grava em `components/`; movi o arquivo para `components/ui/` para seguir a
 | Floating Action Menu | `components/ui/floating-action-menu.tsx` |
 | Animated Tabs | `components/ui/animated-tabs.tsx` |
 | Animated Theme Toggle | `components/ui/animated-theme-toggle.tsx` |
+| Smooth Dropdown | `components/ui/smooth-dropdown.tsx` |
+| Button Download | `components/ui/button-download.tsx` |
+| Nextjsshop Button | `components/ui/nextjsshop-button.tsx` |
+| Gleam Edge Button | `components/ui/gleam-edge-button.tsx` |
 
 ### Cursor — `/cursor`
 

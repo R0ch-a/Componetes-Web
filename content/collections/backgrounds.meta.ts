@@ -187,6 +187,16 @@ export const backgroundsMeta: CollectionMeta = {
       credit: { label: "21st.dev — dhileepkumargm", href: "https://21st.dev/@dhileepkumargm/components/hyperdrive-hero" },
     },
     {
+      id: "rain",
+      name: "Rain",
+      description:
+        "Chuva e tempestade sem canvas: são 500 divs, cada uma uma gota com posição, tamanho, opacidade, duração e atraso sorteados, caindo por um keyframe em looping. O vento é uma rotação aplicada ao container inteiro, então as gotas inclinam juntas sem cálculo por gota. Os relâmpagos vêm em dois tipos, sorteados com peso (dois flashes para cada raio): o flash é um degradê radial branco-azulado piscando sobre a cena; o raio é um SVG cujo traçado é gerado na hora — oito a doze segmentos com desvio horizontal aleatório — desenhado duas vezes, uma grossa com filtro de brilho e outra fina por cima. O ciclo se reagenda sozinho a cada 8 a 16 segundos. O CSS vive num `<style jsx>`, então os keyframes ficam escopados pelo styled-jsx que vem com o Next. Props: intensity, speed, color, angle, dropSize, lightningEnabled, lightningFrequency, thunderEnabled, thunderVolume e thunderDelay; o conteúdo entra como children. O som tem um seletor no canto superior direito do palco, e começa desligado: o componente tenta tocar um trovão dois segundos depois de cada relâmpago, e sem o botão ele passaria a tocar sozinho assim que a página recebesse qualquer clique (antes disso o navegador bloqueia e só registra aviso no console). Medido: desligado, nenhuma tentativa em 20s; ligado, duas em 22s. O botão mora na demo da vitrine, não no componente — a única mudança no arquivo colado foi exportar o `RainBackground`, que era interno. Atenção: o base64 embutido está truncado, então o que sai com o som ligado é um estalo curto, não um trovão. O keyframe da queda usa `100vh`, medida da janela e não da caixa, então em containers baixos as gotas atravessam a área e são cortadas pelo overflow. O arquivo ainda exporta um `ThunderAudio` que gera trovão por Web Audio, mas ele não é usado por nada e não é um componente válido — devolve um objeto em vez de JSX.",
+      tags: ["css", "keyframes", "lightning", "storm"],
+      source: "components/ui/rain.tsx",
+      stageClassName: "min-h-0 p-4",
+      credit: { label: "21st.dev — designali-in", href: "https://21st.dev/@designali-in/components/rain" },
+    },
+    {
       id: "supply-chain-globe",
       name: "Supply Chain Globe",
       description:

@@ -16,6 +16,11 @@ import { ShinyButtonDemo } from "@/components/showcase/demos/shiny-button-demo";
 import { Button03Demo } from "@/components/showcase/demos/button-03-demo";
 import { ConfettiDemo } from "@/components/showcase/demos/confetti-demo";
 import { AnimatedThemeToggleDemo } from "@/components/showcase/demos/animated-theme-toggle-demo";
+import { SmoothDropdownDemo } from "@/components/showcase/demos/smooth-dropdown-demo";
+import { ButtonDownloadDemo } from "@/components/showcase/demos/button-download-demo";
+import { NextjsshopButtonDemo } from "@/components/showcase/demos/nextjsshop-button-demo";
+import { GleamEdgeButtonDemo } from "@/components/showcase/demos/gleam-edge-button-demo";
+import { RainDemo } from "@/components/showcase/demos/rain-demo";
 import { DropdownMenuDemo } from "@/components/showcase/demos/dropdown-menu-demo";
 import { FloatingActionMenuDemo } from "@/components/showcase/demos/floating-action-menu-demo";
 import { AnimatedTabsDemo } from "@/components/showcase/demos/animated-tabs-demo";
@@ -66,6 +71,11 @@ export const demos: Record<string, ComponentType> = {
   "button-03": Button03Demo,
   "confetti": ConfettiDemo,
   "animated-theme-toggle": AnimatedThemeToggleDemo,
+  "smooth-dropdown": SmoothDropdownDemo,
+  "button-download": ButtonDownloadDemo,
+  "nextjsshop-button": NextjsshopButtonDemo,
+  "gleam-edge-button": GleamEdgeButtonDemo,
+  "rain": RainDemo,
   "dropdown-menu": DropdownMenuDemo,
   "floating-action-menu": FloatingActionMenuDemo,
   "animated-tabs": AnimatedTabsDemo,

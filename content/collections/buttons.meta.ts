@@ -69,6 +69,46 @@ export const buttonsMeta: CollectionMeta = {
       credit: { label: "21st.dev" },
     },
     {
+      id: "smooth-dropdown",
+      name: "Smooth Dropdown",
+      description:
+        "Um botão de 40px que se desdobra no próprio menu, sem popover separado: a mesma caixa anima largura (40 → 220), altura e raio com uma mola (amortecimento 34, rigidez 380), crescendo do canto superior direito. A altura aberta não é chutada — o `react-use-measure` mede o conteúdo e a caixa vai exatamente até ele. Enquanto isso o ícone de reticências encolhe e some em 0,15s, e os itens entram com 20ms de atraso entre um e outro, deslizando 8px da direita. O destaque de hover é um fundo e uma barrinha lateral com `layoutId`, então eles correm de item em item em vez de piscar; sem hover, voltam para o item ativo. Logout tem paleta própria em vermelho e fecha o menu; os outros itens só marcam o ativo. Clique fora fecha, via `mousedown` no documento, registrado só enquanto aberto. Os itens moram numa constante no topo do arquivo (“Change Here”), sem props. Usa a sintaxe de `!` no fim da classe do Tailwind v4 (`m-0!`, `p-0!`) para vencer estilos de prosa. Atenções: o fundo de hover do Logout é `bg-red-50`, fixo — no tema escuro vira um bloco rosa-claro sob texto vermelho, destoando do resto do menu; os dois `layoutId` são fixos, então duas instâncias na mesma página disputam o mesmo destaque; e o componente exporta `TwentyTwelveOne`, não `SmoothDropdown`.",
+      tags: ["motion", "dropdown", "layout", "spring"],
+      source: "components/ui/smooth-dropdown.tsx",
+      stageClassName: "min-h-[440px] items-start",
+      credit: { label: "21st.dev — 0xUrvish", href: "https://21st.dev/@0xUrvish/components/smooth-dropdown" },
+    },
+    {
+      id: "button-download",
+      name: "Button Download",
+      description:
+        "Botão de download que conta a própria história em quatro estados. Parado, é ícone e rótulo. Baixando, o fundo cai para metade da opacidade e uma barra da cor cheia cresce da esquerda pela largura inline (`width: progress%`, com transição de 200ms que suaviza os saltos), com um spinner e a porcentagem por cima via `z-index`. Terminado, vira ícone de check e “Downloaded”. O quarto estado, `complete`, é um quadro em branco de propósito: o texto sai em `text-primary` sobre o fundo `bg-primary` — medido, as duas cores são idênticas — e dura os 100ms de folga antes de voltar ao repouso, para a troca de rótulo não saltar. Fora do repouso o botão fica com `pointer-events: none`, então não dá para disparar dois downloads. O componente é controlado: estado e progresso vêm de fora, por `downloadStatus`, `progress` e `onClick`, mais `className`. O download da demo é simulado — 5% a cada 200ms, 4s até 100%, 1,5s mostrando o check e volta ao repouso aos 5,6s — com `setInterval` e dois `setTimeout` que não são limpos se o componente desmontar no meio. Usa o `Button` do shadcn que o projeto já tem.",
+      tags: ["button", "progress", "state", "lucide"],
+      source: "components/ui/button-download.tsx",
+      stageClassName: "min-h-[220px]",
+      credit: { label: "21st.dev — voxlet-ui", href: "https://21st.dev/@voxlet-ui/components/button-download" },
+    },
+    {
+      id: "nextjsshop-button",
+      name: "Nextjsshop Button",
+      description:
+        "Irmão do Pixel-Broke, do mesmo autor: um bloco de pixels que vira seta. À direita da barra há duas grades 5x5 empilhadas na mesma célula de grid. A de baixo tem 25 quadrados (o do centro já apagado) e forma um bloco sólido; a de cima tem 11, posicionados um a um por `grid-area`, invisíveis em repouso. No hover o bloco apaga inteiro e os 11 acendem desenhando uma seta para cima e para a direita. Nada se move e nada desvanece: o `transition` vem sem duração, então cada pixel pisca, e o que escalona é o atraso — `--index` × 60ms, sorteado entre 0 e 3 no bloco e entre 4 e 7 na seta, por isso a seta só começa depois que o bloco se foi. O rótulo é o mesmo typewriter do Pixel-Broke: o clone de `data-text` abre em `steps(var(--characters))`. Diferente do irmão, este tem variantes `.dark` e acompanha o tema: preto sobre claro, branco sobre escuro. No toque, o recorte sai no `:active`. Sem props — texto e cores estão no arquivo. Atenções: os índices são sorteados com `Math.random()` durante o render, então servidor e cliente geram valores diferentes a cada carregamento (no teste o React não reclamou, e o efeito visual é nulo, porque o sorteio só embaralha atrasos); no bloco de toque da folha original, a regra `.button-pixel-broke_bg-pixel` tem o nome de classe errado, sobra do Pixel-Broke, e não casa com nada; `--characters` está cravado em 10, o tamanho de \"Nextjsshop\"; e o elemento é um `<a href=\"#\">`. O registry publica o componente sem CSS — a folha veio do bundle público da demo.",
+      tags: ["css", "grid", "pixel", "typewriter"],
+      source: "components/ui/nextjsshop-button.tsx",
+      stageClassName: "min-h-[220px]",
+      credit: { label: "21st.dev — nextjsshop", href: "https://21st.dev/@nextjsshop/components/nextjsshop-button" },
+    },
+    {
+      id: "gleam-edge-button",
+      name: "Gleam Edge Button",
+      description:
+        "Botão preto com uma borda de luz que gira. A borda não é desenhada: o fundo é duas camadas — um gradiente liso no `padding-box` e um cônico no `border-box` — e a borda transparente deixa o cônico aparecer só na moldura. O ângulo desse cônico é uma custom property registrada com `@property`, que é o que torna possível animá-la: sem o registro, o navegador trataria a variável como texto e não interpolaria nada. Sobre o botão rodam mais duas camadas: um ::before de pontinhos (`radial-gradient` repetido com `background-repeat: space`) recortado por uma máscara cônica, então só um arco de pontos brilha por vez, e um ::after de reflexo que gira. O conjunto tem duas animações somadas por `animation-composition: add` — uma correndo sempre e outra, mais rápida e invertida, que nasce pausada e só destrava no hover; por isso o giro muda de caráter em vez de só acelerar. No hover também o arco engorda de 5% para 20%, gira 95 graus de offset, troca o branco pelo tom suave do acento, e um brilho interno pulsante aparece atrás do rótulo. Respeita `prefers-reduced-motion` por dois caminhos: uma media query que mata as animações e um `useSyncExternalStore` que expõe o estado em `data-reduced-motion`. Cada instância recebe um escopo próprio via `useId`, incluindo as regras `@property` e os keyframes, então dá para pôr vários na mesma página sem conflito — ao contrário de outros desta coleção. Props: label, onClick, className, fillColor, labelColor, accentColor, accentSoftColor, sweepDuration, easeDuration, arcWidth, cornerRadius, showSpeckle, showSheen e speckleOpacity. Atenção: as cores padrão são fixas (preto com laranja) e não acompanham o tema, por isso o palco é escuro; e o arquivo foi gravado como `gleam-edge-button.tsx` porque `shiny-button.tsx` já pertence ao Shiny Button do Magic UI, a primeira entrada desta coleção — o export continua se chamando ShinyButton.",
+      tags: ["css", "conic-gradient", "at-property", "hover"],
+      source: "components/ui/gleam-edge-button.tsx",
+      stageClassName: "min-h-[260px]",
+      credit: { label: "21st.dev" },
+    },
+    {
       id: "animated-tabs",
       name: "Animated Tabs",
       description:
