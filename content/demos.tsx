@@ -21,6 +21,7 @@ import { ButtonDownloadDemo } from "@/components/showcase/demos/button-download-
 import { NextjsshopButtonDemo } from "@/components/showcase/demos/nextjsshop-button-demo";
 import { GleamEdgeButtonDemo } from "@/components/showcase/demos/gleam-edge-button-demo";
 import { RainDemo } from "@/components/showcase/demos/rain-demo";
+import { StarButtonDemo } from "@/components/showcase/demos/star-button-demo";
 import { DropdownMenuDemo } from "@/components/showcase/demos/dropdown-menu-demo";
 import { FloatingActionMenuDemo } from "@/components/showcase/demos/floating-action-menu-demo";
 import { AnimatedTabsDemo } from "@/components/showcase/demos/animated-tabs-demo";
@@ -76,6 +77,7 @@ export const demos: Record<string, ComponentType> = {
   "nextjsshop-button": NextjsshopButtonDemo,
   "gleam-edge-button": GleamEdgeButtonDemo,
   "rain": RainDemo,
+  "star-button": StarButtonDemo,
   "dropdown-menu": DropdownMenuDemo,
   "floating-action-menu": FloatingActionMenuDemo,
   "animated-tabs": AnimatedTabsDemo,

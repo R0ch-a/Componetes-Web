@@ -182,6 +182,17 @@ export const cardsMeta: CollectionMeta = {
       credit: { label: "Portado de ux_ui_design/tiltedcarousel" },
     },
     {
+      id: "cookie-banner",
+      name: "Cookie Panel",
+      description:
+        "Aviso de cookies como toast preso no canto inferior direito, com as preferências abrindo dentro dele em vez de num modal. Só aparece se não houver consentimento salvo: na montagem ele lê `cookie-consent` no localStorage e, se estiver vazio, monta e liga a entrada no quadro seguinte. A sanfona não usa altura automática — um efeito mede o `scrollHeight` do conteúdo e escreve o valor em pixels, que é o que torna a transição de altura possível; medido aqui, 274px com as quatro categorias abertas. São quatro: a estritamente necessária vem marcada e travada, as outras três alternam. “Save preferences” grava o objeto inteiro e o consentimento; “Accept all” grava só o consentimento; o X fecha sem gravar nada, então o aviso volta no próximo carregamento. Props: title, message, acceptText, customizeText, icon (cookie, shield ou info), className, privacyHref e termsHref. Roda em rota isolada porque é `fixed` com `z-50` — solto na vitrine, flutuaria sobre a página inteira em vez de ficar na seção. A demo limpa as duas chaves antes de montar e traz um botão para repetir, senão a seção ficaria vazia para sempre depois do primeiro aceite. Atenções: as classes de entrada e saída (`animate-in`, `slide-in-from-bottom-8` e companhia) vêm do plugin tailwindcss-animate, que **não está neste projeto** — o painel aparece e some de estalo, sem a animação que o autor previu; os links padrão apontam para /privacy e /terms, que não existem aqui; o `PrefRow` é declarado dentro do componente, então as quatro linhas são recriadas a cada render em vez de atualizadas; e a fonte trazia `necessary` duas vezes no mesmo literal, o que o TypeScript recusa — removida a repetição, sem mudança de resultado.",
+      tags: ["consent", "localstorage", "accordion", "lucide"],
+      source: "components/ui/cookie-banner-1.tsx",
+      preview: { route: "/preview/cookie-banner" },
+      stageClassName: "min-h-0 p-4",
+      credit: { label: "21st.dev" },
+    },
+    {
       id: "vertical-image-stack",
       name: "Vertical Image Stack",
       description:

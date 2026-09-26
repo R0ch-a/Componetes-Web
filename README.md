@@ -126,6 +126,7 @@ A rota `/<slug>`, o link no header e o card no hub aparecem sozinhos.
 | Animated List | `components/ui/animated-list.tsx` |
 | Tilted Carousel | `components/ui/tilted-carousel.tsx` |
 | Vertical Image Stack | `components/ui/vertical-image-stack.tsx` |
+| Cookie Panel | `components/ui/cookie-banner-1.tsx` |
 
 ### Teclados — `/teclados`
 
@@ -206,6 +207,7 @@ O CLI grava em `components/`; movi o arquivo para `components/ui/` para seguir a
 | Button Download | `components/ui/button-download.tsx` |
 | Nextjsshop Button | `components/ui/nextjsshop-button.tsx` |
 | Gleam Edge Button | `components/ui/gleam-edge-button.tsx` |
+| Star Button | `components/ui/star-button.tsx` |
 
 ### Cursor — `/cursor`
 

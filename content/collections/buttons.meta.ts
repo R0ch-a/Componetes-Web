@@ -109,6 +109,16 @@ export const buttonsMeta: CollectionMeta = {
       credit: { label: "21st.dev" },
     },
     {
+      id: "star-button",
+      name: "Star Button",
+      description:
+        "Botão cor de pêssego que solta seis estrelas no hover. Não há animação nem JavaScript: cada estrela é um SVG absoluto escondido atrás do botão em `z-index: -5`, e o `group-hover` do Tailwind muda `top`, `left` e o z para 2 — a transição cuida do resto. O que dá vida à debandada são as durações e curvas diferentes por estrela: 1000ms para as duas maiores, 800ms e 600ms para as menores, cada uma com seu cubic-bezier, então elas partem juntas e chegam em tempos diferentes. Ao mesmo tempo o botão inverte — fundo vira transparente, texto e borda ficam pêssego — e ganha um halo de 25px; é essa inversão que revela as estrelas que estavam escondidas por trás do fundo sólido. O clique encolhe para 95%. Sem props: cor, texto e trajetórias estão cravados no arquivo; a única variação é o preenchimento das estrelas, que fica creme no tema escuro. Atenção: o brilho das estrelas **não funciona neste projeto**. O autor escreveu `drop-shadow-[0_0_10px_var(--tw-shadow-color)]`, mas nada define essa variável nesses elementos — ela só é preenchida por utilitários de cor de sombra. Medido: a variável volta vazia e a expressão inteira computa `filter: none`, em repouso e no hover. Trocar `var(--tw-shadow-color)` pela cor literal `#fec195` nas doze ocorrências resolve.",
+      tags: ["css", "hover", "group", "stars"],
+      source: "components/ui/star-button.tsx",
+      stageClassName: "min-h-[260px]",
+      credit: { label: "21st.dev" },
+    },
+    {
       id: "animated-tabs",
       name: "Animated Tabs",
       description:
