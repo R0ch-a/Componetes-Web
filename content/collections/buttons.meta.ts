@@ -119,6 +119,26 @@ export const buttonsMeta: CollectionMeta = {
       credit: { label: "21st.dev" },
     },
     {
+      id: "motion-button",
+      name: "Motion Button",
+      description:
+        "Um círculo que engole o botão. Em repouso é um disco de 48px à esquerda, com a seta dentro e o rótulo ao lado sobre o fundo da página; no hover o disco cresce até a largura toda em 0,5s e a pílula fica cheia. A inversão de leitura acompanha: o texto troca de `text-foreground` para `text-background`, então passa de claro sobre escuro para escuro sobre claro sem perder contraste em nenhum momento, e a seta desliza 6,4px para a direita. Tudo em CSS, por `group-hover` — nenhuma biblioteca de animação, apesar do nome. Medido nos dois estados: círculo de 48 para 192px, seta de 0 para 6,4px, e a cor do rótulo invertendo. Como usa os tokens do tema, funciona nos dois modos: no escuro vira pílula branca com letra preta, no claro o oposto. Props: label e classes. Atenções: a interface declara `variant`, `animate` e `delay`, mas o componente não desestrutura nenhum dos três — são aceitos e ignorados; a classe `font-manrope` não corresponde a nenhuma fonte registrada neste projeto, então o rótulo cai na pilha padrão do sistema; e o arquivo define um `cn` próprio em vez de usar o de `lib/utils`, mantido como veio.",
+      tags: ["css", "hover", "group", "pill"],
+      source: "components/ui/motion-button.tsx",
+      stageClassName: "min-h-[220px]",
+      credit: { label: "21st.dev" },
+    },
+    {
+      id: "spinning-border-button",
+      name: "Spinning Border Button",
+      description:
+        "Botão escuro em que um facho de luz passa a correr pela borda quando o ponteiro chega. São três camadas empilhadas dentro de uma moldura de 1px: embaixo, um quadrado bem maior que o botão (`inset: -100%`) pintado com um gradiente cônico que vai de transparente a branco apenas no último quarto da volta, girando sem parar em 3s lineares; no meio, uma borda cinza estática que esconde o facho; em cima, a superfície do botão com degradê e um brilho interno de 1px no topo, que é o que dá o relevo. O facho gira o tempo todo, mas fica invisível: o hover só apaga a borda estática e acende o facho, então o giro já está em andamento quando aparece, sem começar do zero. Junto disso o botão sobe 2px, ganha um halo branco suave, o texto vai de cinza a branco puro e a seta desliza 2px. Medido nos dois estados. Aceita tudo o que um `<button>` aceita, encaminha ref, e o rótulo entra como children (padrão “Request Demo”). O prompt de integração pedia acrescentar `@keyframes spin` ao CSS global, e isso foi feito — o Tailwind já emitia esses keyframes porque outros dois componentes usam `animate-spin`, mas depender disso deixaria a borda parada no dia em que eles saíssem. O `@import \"tw-animate-css\"` que o prompt também pedia foi omitido: o pacote não está instalado e nada neste componente precisa dele. Atenção: as cores são cravadas em tons de zinc, sem variante para tema claro, por isso o palco é escuro.",
+      tags: ["css", "conic-gradient", "hover", "border"],
+      source: "components/ui/spinning-border-button.tsx",
+      stageClassName: "min-h-[220px]",
+      credit: { label: "21st.dev" },
+    },
+    {
       id: "animated-tabs",
       name: "Animated Tabs",
       description:

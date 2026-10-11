@@ -92,3 +92,13 @@
     linear-gradient(to bottom, color-mix(in oklab, var(--foreground) 7%, transparent) 1px, transparent 1px);
   background-size: 24px 24px;
 }
+
+/* Usado pelo Spinning Border Button, via animate-[spin_3s_linear_infinite].
+   O Tailwind já emite estes keyframes quando alguém usa `animate-spin`, mas
+   isso é efeito colateral de outros componentes — declarado aqui para a borda
+   não parar de girar se eles saírem. */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

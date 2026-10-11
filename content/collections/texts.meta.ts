@@ -51,6 +51,16 @@ export const textsMeta: CollectionMeta = {
       credit: { label: "Magic UI", href: "https://magicui.design/docs/components/text-reveal" },
     },
     {
+      id: "flip-text",
+      name: "Flip Text",
+      description:
+        "A frase entra letra a letra, cada uma girando para cima até ficar de frente. Cada carácter vira um span próprio que sai de `rotateX(-90deg)` com opacidade 0 e chega em 0 e 1, e o atraso é o índice vezes 0,08s — daí a cascata da esquerda para a direita. O pivô fica no meio da letra (`origin-center`), então ela dobra sobre o próprio eixo em vez de tombar pela base. Um detalhe de ofício que muda o resultado: não há `perspective` em nenhum ancestral (medido: `none` no pai e no avô, com `transform-style: flat`), então o giro sai achatado — lê-se como uma persiana se abrindo, não como uma carta virando no espaço. Quem quiser o efeito tridimensional acrescenta uma perspectiva no container. Props: word, duration, delayMultiple, framerProps (as variants inteiras, se quiser outra entrada) e className. Duas observações sobre a fonte: o `AnimatePresence` com `exit` é inerte enquanto a palavra não muda, porque as letras nunca desmontam; e o espaço entre palavras vira um span de largura zero que ainda recebe o espaçamento da lista, então a separação entre palavras fica maior que a das letras. A animação roda uma vez, na montagem — como a seção monta junto com a página, a demo traz um botão de repetir que remonta o componente.",
+      tags: ["framer-motion", "3d", "stagger", "letters"],
+      source: "components/ui/flip-text.tsx",
+      stageClassName: "min-h-[260px]",
+      credit: { label: "Magic UI", href: "https://magicui.design/docs/components/flip-text" },
+    },
+    {
       id: "flying-text",
       name: "Flying Text",
       description:

@@ -203,5 +203,37 @@ export const cardsMeta: CollectionMeta = {
       stageClassName: "min-h-0 p-4",
       credit: { label: "21st.dev — jatin-yadav05", href: "https://21st.dev/@jatin-yadav05/components/vertical-image-stack" },
     },
+    {
+      id: "kanban",
+      name: "Kanban",
+      description:
+        "Quadro kanban com quatro colunas e arrastar-e-soltar nativo do HTML5 — sem biblioteca de DnD. O truque que faz a inserção parecer precisa são os indicadores: entre cada dois cards existe uma barrinha roxa de meio pixel, invisível, marcada com o id do card seguinte. Ao arrastar, o componente percorre todos os indicadores da coluna, calcula a distância vertical do ponteiro até cada um e acende o mais próximo acima do cursor; ao soltar, o card é inserido exatamente ali. É por isso que dá para reordenar dentro da mesma coluna, não só mover entre elas. Cada card é um `motion.div` com `layout` e `layoutId`, então a reorganização é animada em vez de saltar. À direita fica o barril: arrastar um card para lá o apaga, e o alvo acende em vermelho com a lixeira virando chama enquanto o card paira sobre ele. Cada coluna tem seu “Add card”, que abre um campo inline. Verificado: mover um card de TODO para Complete muda as contagens de 3 e 1 para 2 e 2; soltar no barril tira o card do quadro; e o formulário acrescenta na coluna certa. Sem props — colunas, cores e cards iniciais estão no arquivo, e o estado vive em memória, então recarregar devolve o quadro ao começo. Roda em rota isolada porque ocupa a tela inteira com rolagem própria e porque a busca dos indicadores usa `document.querySelectorAll`, que é global: duas instâncias na mesma página disputariam as mesmas barrinhas. Atenção: as cores são fixas em tons de neutral escuro e não acompanham o tema; e há uma guarda morta no código (`findIndex` comparado com `undefined`, quando ele devolve -1), sem efeito prático enquanto o id existir.",
+      tags: ["drag-and-drop", "framer-motion", "board", "state"],
+      source: "components/ui/kanban.tsx",
+      preview: { route: "/preview/kanban" },
+      stageClassName: "min-h-0 p-4",
+      credit: { label: "21st.dev" },
+    },
+    {
+      id: "image-stack",
+      name: "Image Stack",
+      description:
+        "Baralho de fotos que se embaralha no arrasto. Os cards ficam empilhados em leque — cada um recuado 12px para a esquerda, 8px para cima e girado um pouco mais que o anterior, com o da frente reto — e o z-index desce de dez em dez a partir de 50. Arrastar o de cima e soltar manda ele para o fim da fila: o array é rotacionado e os z-index recalculados pela nova posição, então o próximo assume a frente. Só o card do topo é arrastável. O que separa um embaralhamento de um engano é o limiar de 50px medidos em linha reta entre onde o arrasto começou e onde terminou: abaixo disso nada acontece e o `dragSnapToOrigin` devolve o card ao lugar com mola. Durante o arrasto ele cresce 10%, endireita e ganha sombra forte; um cooldown de 300ms impede disparar dois embaralhamentos seguidos. Prop: images, um vetor de URLs — a quantidade de cards segue o tamanho do vetor. Atenções: as imagens da demo publicada vivem no Cloudinary do autor e hoje respondem **401**, a conta bloqueou a entrega pública; a demo daqui usa três imagens do próprio repositório, e o componente não precisou mudar porque recebe a lista por prop. A classe `origin-bottom-center` não existe no Tailwind (as válidas são origin-bottom e as diagonais), então o pivô fica no centro — medido, `transform-origin` sai em 128px por 179px, que é o meio do card. E o fundo dos cards é branco fixo, sem variante para tema escuro.",
+      tags: ["framer-motion", "drag", "deck", "shuffle"],
+      source: "components/ui/image-stack.tsx",
+      stageClassName: "min-h-[560px]",
+      credit: { label: "21st.dev" },
+    },
+    {
+      id: "connoisseur-stack",
+      name: "Connoisseur Stack Interactor",
+      description:
+        "Menu de três pratos em que passar o mouse troca a foto **e** a máscara por onde ela aparece. Cada item tem um `clipPath` próprio, e o recorte não é estático: o GSAP escala as formas de 0 a 1 com atraso sorteado (`from: random`), segura numa respiração de 1,05 que sai do centro, e desmancha de volta a 0 começando pelas bordas — um ciclo que repete com 1s de pausa. A imagem aparece como um mosaico que se monta, respira e se desfaz. As três máscaras são bem diferentes: cinco barras arredondadas empilhadas, seis retângulos de tamanhos variados, e uma grade 3x3 de nove quadrados. A troca é feita na mão, por `setAttribute` no `clip-path` e no `href` da imagem, com a linha do tempo anterior morta antes de montar a nova; um `gsap.context` amarrado ao container limpa tudo na desmontagem. Verificado: passar por cada um dos três troca máscara, imagem e número destacado, e volta ao primeiro. Props: items (num, name, clipId e image) e className. Roda em rota isolada porque é `min-h-screen` e porque os ids das máscaras são globais no documento — duas instâncias na mesma página disputariam os mesmos `clipPath`. Atenções: o arquivo usa hooks mas não traz `\"use client\"`, então a fronteira de cliente vai na demo; o nome de cada item é quebrado em duas linhas por `split(\" \")`, então nomes de uma só palavra ou de três em diante saem errados; a classe `dark:[text-stroke:1.5px_#52525b]` não faz nada, porque `text-stroke` sem prefixo não é propriedade real — quem desenha o contorno é a variante `-webkit-` ao lado; e há um `useEffect` importado e nunca usado.",
+      tags: ["gsap", "svg", "clip-path", "hover"],
+      source: "components/ui/connoisseur-stack-interactor.tsx",
+      preview: { route: "/preview/connoisseur-stack" },
+      stageClassName: "min-h-0 p-4",
+      credit: { label: "21st.dev" },
+    },
   ],
 };

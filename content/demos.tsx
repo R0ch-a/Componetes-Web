@@ -22,6 +22,10 @@ import { NextjsshopButtonDemo } from "@/components/showcase/demos/nextjsshop-but
 import { GleamEdgeButtonDemo } from "@/components/showcase/demos/gleam-edge-button-demo";
 import { RainDemo } from "@/components/showcase/demos/rain-demo";
 import { StarButtonDemo } from "@/components/showcase/demos/star-button-demo";
+import { FlipTextDemo } from "@/components/showcase/demos/flip-text-demo";
+import { ImageStackDemo } from "@/components/showcase/demos/image-stack-demo";
+import { MotionButtonDemo } from "@/components/showcase/demos/motion-button-demo";
+import { SpinningBorderButtonDemo } from "@/components/showcase/demos/spinning-border-button-demo";
 import { DropdownMenuDemo } from "@/components/showcase/demos/dropdown-menu-demo";
 import { FloatingActionMenuDemo } from "@/components/showcase/demos/floating-action-menu-demo";
 import { AnimatedTabsDemo } from "@/components/showcase/demos/animated-tabs-demo";
@@ -78,6 +82,10 @@ export const demos: Record<string, ComponentType> = {
   "gleam-edge-button": GleamEdgeButtonDemo,
   "rain": RainDemo,
   "star-button": StarButtonDemo,
+  "flip-text": FlipTextDemo,
+  "image-stack": ImageStackDemo,
+  "motion-button": MotionButtonDemo,
+  "spinning-border-button": SpinningBorderButtonDemo,
   "dropdown-menu": DropdownMenuDemo,
   "floating-action-menu": FloatingActionMenuDemo,
   "animated-tabs": AnimatedTabsDemo,

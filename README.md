@@ -127,6 +127,9 @@ A rota `/<slug>`, o link no header e o card no hub aparecem sozinhos.
 | Tilted Carousel | `components/ui/tilted-carousel.tsx` |
 | Vertical Image Stack | `components/ui/vertical-image-stack.tsx` |
 | Cookie Panel | `components/ui/cookie-banner-1.tsx` |
+| Kanban | `components/ui/kanban.tsx` |
+| Image Stack | `components/ui/image-stack.tsx` |
+| Connoisseur Stack Interactor | `components/ui/connoisseur-stack-interactor.tsx` |
 
 ### Teclados — `/teclados`
 
@@ -159,6 +162,7 @@ O CLI grava em `components/`; movi o arquivo para `components/ui/` para seguir a
 | Tooltip Card | `components/ui/tooltip-card.tsx` |
 | Text Roll | `components/ui/text-roll.tsx` |
 | Text Reveal | `components/ui/text-reveal.tsx` |
+| Flip Text | `components/ui/flip-text.tsx` |
 | Flying Text | `components/ui/flying-text.tsx` |
 
 ### ASCII Art — `/ascii-art`
@@ -208,6 +212,8 @@ O CLI grava em `components/`; movi o arquivo para `components/ui/` para seguir a
 | Nextjsshop Button | `components/ui/nextjsshop-button.tsx` |
 | Gleam Edge Button | `components/ui/gleam-edge-button.tsx` |
 | Star Button | `components/ui/star-button.tsx` |
+| Motion Button | `components/ui/motion-button.tsx` |
+| Spinning Border Button | `components/ui/spinning-border-button.tsx` |
 
 ### Cursor — `/cursor`
 
